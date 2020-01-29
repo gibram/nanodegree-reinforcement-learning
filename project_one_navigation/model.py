@@ -15,7 +15,7 @@ class QNetwork(nn.Module):
             fc1_units (int): Number of nodes in first hidden layer
             fc2_units (int): Number of nodes in second hidden layer
         """
-        print('versao 1.0')
+        print('version 3.0')
         super().__init__()
         self.seed = torch.manual_seed(seed)
         # Input to a hidden layer
@@ -27,13 +27,13 @@ class QNetwork(nn.Module):
         
         self.output = nn.Linear(hidden_layers[-1], action_size)
         
-        self.dropout = nn.Dropout(p=drop_p)
+        #self.dropout = nn.Dropout(p=drop_p)
 
     def forward(self, x):
         """Build a network that maps state -> action values."""
         for each in self.hidden_layers:
             x = F.relu(each(x))
-            x = self.dropout(x)
+            #x = self.dropout(x)
         return self.output(x)
 
 
